@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[GD-Sync]
+
+version="0.14"
+publicKey="53bea4e849f3b66d"
+privateKey="a05edae34ee8a58d"
+uniqueUsername=true
+useSenderID=true
+
+[application]
+
+config/name="New Game Project"
+run/main_scene="uid://elst0xn32iil"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
+
+[global_group]
+
+having_focus=""
+rmb_walking_c=""
+move_and_slide_c=""
