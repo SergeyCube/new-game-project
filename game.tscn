@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://elst0xn32iil"]
+[gd_scene format=4 uid="uid://elst0xn32iil"]
 
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://character/character.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://cj0hhuca60w2v" path="res://game.gd" id="1_e2o6t"]
@@ -39,40 +39,40 @@ _surfaces = [{
 
 [sub_resource type="BoxMesh" id="BoxMesh_7jktm"]
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=22468147]
 script = ExtResource("1_e2o6t")
 
-[node name="Character" parent="." instance=ExtResource("1_80nbo")]
+[node name="Character" parent="." unique_id=237273328 instance=ExtResource("1_80nbo")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, 0.49999997, -0.49999997, 0, 10, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=239618745]
+transform = Transform3D(0.3826834, 0.6532814, -0.6532814, 0, 0.7071067, 0.7071067, 0.92387944, -0.27059802, 0.27059802, 0, 10, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=790716533]
 environment = SubResource("Environment_80nbo")
 
-[node name="LevelPlatform" type="StaticBody3D" parent="."]
+[node name="LevelPlatform" type="StaticBody3D" parent="." unique_id=1486682900]
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="LevelPlatform"]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="LevelPlatform" unique_id=607877218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
 shape = SubResource("ConcavePolygonShape3D_80nbo")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LevelPlatform"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LevelPlatform" unique_id=419590256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
 mesh = SubResource("ArrayMesh_e2o6t")
 skeleton = NodePath("../..")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1120494773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=409542951]
 shape = SubResource("BoxShape3D_fc0e3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1793786054]
 mesh = SubResource("BoxMesh_7jktm")
 
-[node name="MoveAndSlideC" parent="CharacterBody3D" instance=ExtResource("4_fc0e3")]
+[node name="MoveAndSlideC" parent="CharacterBody3D" unique_id=1906784884 instance=ExtResource("4_fc0e3")]
 
-[node name="RMBWalkingC" parent="CharacterBody3D" instance=ExtResource("4_7jktm")]
+[node name="RMBWalkingC" parent="CharacterBody3D" unique_id=762637959 instance=ExtResource("4_7jktm")]
 walk_speed = 1.0
 
 [connection signal="input_event" from="LevelPlatform" to="." method="_on_level_platform_input_event"]

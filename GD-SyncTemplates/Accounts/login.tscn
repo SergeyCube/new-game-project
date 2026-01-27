@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6v2t1l5wlcjk"]
+[gd_scene format=3 uid="uid://b6v2t1l5wlcjk"]
 
-[ext_resource type="Script" path="res://GD-SyncTemplates/Accounts/login.gd" id="1_dw383"]
+[ext_resource type="Script" uid="uid://bvu3u6ixy5da5" path="res://GD-SyncTemplates/Accounts/login.gd" id="1_dw383"]
 
-[node name="Login" type="Control"]
+[node name="Login" type="Control" unique_id=171231036]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dw383")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1491968901]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,27 +19,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=365293623]
 layout_mode = 2
 text = "Email"
 
-[node name="Email" type="LineEdit" parent="VBoxContainer"]
+[node name="Email" type="LineEdit" parent="VBoxContainer" unique_id=1998232171]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=485213412]
 layout_mode = 2
 text = "Password"
 
-[node name="Password" type="LineEdit" parent="VBoxContainer"]
+[node name="Password" type="LineEdit" parent="VBoxContainer" unique_id=1105879926]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="LoginButton" type="Button" parent="VBoxContainer"]
+[node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=228357003]
 layout_mode = 2
 text = "Login"
 
-[node name="ErrorText" type="Label" parent="VBoxContainer"]
+[node name="ErrorText" type="Label" parent="VBoxContainer" unique_id=1831832896]
 unique_name_in_owner = true
 layout_mode = 2
 

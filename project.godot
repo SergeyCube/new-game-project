@@ -20,7 +20,7 @@ useSenderID=true
 
 config/name="New Game Project"
 run/main_scene="uid://elst0xn32iil"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -31,7 +31,6 @@ GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -42,3 +41,11 @@ enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 having_focus=""
 rmb_walking_c=""
 move_and_slide_c=""
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b11acmdcq41ko"]
+[gd_scene format=3 uid="uid://b11acmdcq41ko"]
 
-[ext_resource type="Script" path="res://GD-SyncTemplates/Leaderboards/leaderboard_label.gd" id="1_gg6n8"]
+[ext_resource type="Script" uid="uid://cxcc4vhyq5nn6" path="res://GD-SyncTemplates/Leaderboards/leaderboard_label.gd" id="1_gg6n8"]
 
-[node name="LeaderboardLabel" type="HBoxContainer"]
+[node name="LeaderboardLabel" type="HBoxContainer" unique_id=1032249296]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,33 +11,33 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_gg6n8")
 
-[node name="RankBox" type="HBoxContainer" parent="."]
+[node name="RankBox" type="HBoxContainer" parent="." unique_id=1684708118]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Rank" type="Label" parent="RankBox"]
+[node name="Rank" type="Label" parent="RankBox" unique_id=1008378871]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1"
 clip_text = true
 
-[node name="UsernameBox" type="HBoxContainer" parent="."]
+[node name="UsernameBox" type="HBoxContainer" parent="." unique_id=623387187]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Username" type="Label" parent="UsernameBox"]
+[node name="Username" type="Label" parent="UsernameBox" unique_id=1117241543]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Username"
 clip_text = true
 
-[node name="ScoreBox" type="HBoxContainer" parent="."]
+[node name="ScoreBox" type="HBoxContainer" parent="." unique_id=658493065]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Score" type="Label" parent="ScoreBox"]
+[node name="Score" type="Label" parent="ScoreBox" unique_id=2040903224]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

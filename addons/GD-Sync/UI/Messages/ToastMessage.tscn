@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dewhdphifjt15"]
+[gd_scene format=3 uid="uid://dewhdphifjt15"]
 
-[ext_resource type="Script" uid="uid://cv2owqer2ekyg" path="res://addons/GD-Sync/UI/Messages/ToastMessage.gd" id="1_2ijdd"]
+[ext_resource type="Script" uid="uid://c6ai0h4gm8oo" path="res://addons/GD-Sync/UI/Messages/ToastMessage.gd" id="1_2ijdd"]
 [ext_resource type="Theme" uid="uid://5whm1igkt23h" path="res://addons/GD-Sync/UI/ConfigMenu/GD-Theme.tres" id="1_nql3a"]
 
-[node name="ToastMessage" type="Control"]
+[node name="ToastMessage" type="Control" unique_id=489217013]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ mouse_filter = 2
 theme = ExtResource("1_nql3a")
 script = ExtResource("1_2ijdd")
 
-[node name="Anchor" type="Control" parent="."]
+[node name="Anchor" type="Control" parent="." unique_id=124286154]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="Anchor"]
+[node name="Label" type="RichTextLabel" parent="Anchor" unique_id=451288070]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
