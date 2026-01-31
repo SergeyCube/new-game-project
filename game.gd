@@ -1,5 +1,7 @@
 extends Node3D
 
+const CHARACTER = preload("uid://ckudr8chj1kgo") #character.tscn
+
 func _ready() -> void:
 	GDSync.connected.connect(_on_GDSync_connected)
 	GDSync.connection_failed.connect(_on_GDSync_connection_failed)
@@ -33,6 +35,8 @@ normal: Vector3, _shape_idx: int) -> void:
 	for node in get_tree().get_nodes_in_group("rmb_walking_c"):
 		if node.is_in_group("having_focus"): 
 			node.destination = Vector3(event_position.x, 0, event_position.z)
+
+
 
 func _on_GDSync_connected() -> void:
 	print(GDSync.get_client_id(), " Connected to GD-Sync")
@@ -109,6 +113,14 @@ func _on_GDSync_client_joined(client_id: int) -> void:
 		print(GDSync.get_client_id(), " Raw ping to ", client_id, ": ", ping * 60.0)
 		var perceived_ping: float = await GDSync.get_client_percieved_ping(client_id)
 		print(GDSync.get_client_id(), " Perceived ping to ", client_id, ": ", perceived_ping * 60.0)
+		
+	var character: CharacterBody3D = CHARACTER.instantiate()
+	self.add_child(character)
+	character.global_position = Vector3(0.0, 2.5, 0.0)
+	character.name = "Character" + str(client_id)
+	GDSync.set_gdsync_owner(character, client_id)
 
 func _on_GDSync_client_left(client_id: int) -> void:
-	pass
+	print(client_id, " Left lobby")
+	var character: CharacterBody3D = self.get_node_or_null("Character" + str(client_id))
+	if character != null: character.queue_free()
