@@ -23,6 +23,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	#Walking with RMB
 	get_tree().call_group("rmb_walking_c", "update_parent_velocity", delta)
+	#Gravity
+	get_tree().call_group("gravity_c", "update_parent_gravity")
 	#Move_and_slide parent. Must be called after all manipulations with Character3d's velocity
 	get_tree().call_group("move_and_slide_c", "move_and_slide_parent")
 
@@ -40,7 +42,7 @@ normal: Vector3, _shape_idx: int) -> void:
 
 func _on_GDSync_connected() -> void:
 	print(GDSync.get_client_id(), " Connected to GD-Sync")
-	GDSync.player_set_username("User" + str(GDSync.get_client_id()))
+	GDSync.player_set_username("Player" + str(GDSync.get_client_id()))
 	print(GDSync.get_client_id(), " Username ", GDSync.player_get_username(GDSync.get_client_id()))
 	print(GDSync.get_client_id(), " Player data ", GDSync.player_get_all_data(GDSync.get_client_id()))
 	
@@ -116,7 +118,7 @@ func _on_GDSync_client_joined(client_id: int) -> void:
 		
 	var character: CharacterBody3D = CHARACTER.instantiate()
 	self.add_child(character)
-	character.global_position = Vector3(0.0, 2.5, 0.0)
+	character.global_position = Vector3(0.0, 5.0, 0.0)
 	character.name = "Character" + str(client_id)
 	GDSync.set_gdsync_owner(character, client_id)
 

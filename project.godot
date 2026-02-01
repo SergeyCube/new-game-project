@@ -44,6 +44,7 @@ enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 having_focus=""
 rmb_walking_c=""
 move_and_slide_c=""
+gravity_c=""
 
 [physics]
 

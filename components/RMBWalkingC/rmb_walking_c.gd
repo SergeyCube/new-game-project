@@ -17,5 +17,5 @@ func update_parent_velocity(delta: float) -> void:
 	if half_step == 0.0: half_step = 0.01
 	if direction.length() <= half_step:
 		direction = Vector3.ZERO
-	_parent.velocity = direction.normalized() * self.walk_speed
+	self._parent.velocity = direction.normalized() * self.walk_speed
 	#print(_parent.velocity)

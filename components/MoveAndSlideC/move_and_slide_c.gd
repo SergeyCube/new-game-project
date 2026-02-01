@@ -6,4 +6,4 @@ func _ready() -> void:
 	self.add_to_group("move_and_slide_c")
 	
 func move_and_slide_parent() -> void:
-	_parent.move_and_slide()
+	self._parent.move_and_slide()

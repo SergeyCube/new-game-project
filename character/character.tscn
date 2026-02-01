@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3i1s0eatkbgn" path="res://character/character.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/RMBWalkingC/rmb_walking_c.tscn" id="2_ugqs2"]
 [ext_resource type="PackedScene" uid="uid://c8swlifmrfxdv" path="res://components/MoveAndSlideC/move_and_slide_c.tscn" id="3_hx151"]
+[ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/GravityC/gravity_c.tscn" id="4_hx151"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xx22o"]
 
@@ -30,3 +31,5 @@ size = 20.0
 [node name="RMBWalkingC" parent="." unique_id=1390097823 instance=ExtResource("2_ugqs2")]
 
 [node name="MoveAndSlideC" parent="." unique_id=768861525 instance=ExtResource("3_hx151")]
+
+[node name="GravityC" parent="." unique_id=397637246 instance=ExtResource("4_hx151")]
