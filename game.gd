@@ -21,12 +21,14 @@ func _ready() -> void:
 	GDSync.start_multiplayer()
 
 func _physics_process(delta: float) -> void:
+	
 	#Walking with RMB
 	get_tree().call_group("rmb_walking_c", "update_parent_velocity", delta)
 	#Gravity
-	get_tree().call_group("gravity_c", "update_parent_gravity")
+	get_tree().call_group("gravity_c", "update_parent_gravity", delta)
 	#Move_and_slide parent. Must be called after all manipulations with Character3d's velocity
-	get_tree().call_group("move_and_slide_c", "move_and_slide_parent")
+	get_tree().call_group("move_and_slide_c", "move_and_slide_parent", delta)
+	pass
 
 func _on_level_platform_input_event(_camera: Node, event: InputEvent, event_position: Vector3, 
 normal: Vector3, _shape_idx: int) -> void:
