@@ -8,5 +8,5 @@ func _ready() -> void:
 	#print(self._parent.name)
 	#print("Gravity ", self._gravity)
 	
-func _physics_process(delta: float) -> void:
+func update_parent_gravity(delta: float) -> void:
 	self._parent.velocity.y -= self._gravity * delta

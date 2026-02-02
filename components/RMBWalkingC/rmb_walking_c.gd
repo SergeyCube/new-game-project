@@ -11,12 +11,14 @@ func _ready() -> void:
 	self.add_to_group("rmb_walking_c")
 
 func update_parent_velocity(delta: float) -> void:
-	#if not _parent.is_on_floor(): return
+	if not _parent.is_on_floor(): return
 	self.global_position.y = 0.0
 	var direction: Vector3 = self.destination - self.global_position
 	var half_step: float = self.walk_speed * delta / 2.0
 	if half_step == 0.0: half_step = 0.01
 	if direction.length() <= half_step:
 		direction = Vector3.ZERO
-	self._parent.velocity = direction.normalized() * self.walk_speed
+	direction = direction.normalized()
+	self._parent.velocity.x = direction.x * self.walk_speed
+	self._parent.velocity.z = direction.z * self.walk_speed
 	#print(_parent.velocity)

@@ -69,6 +69,7 @@ shape = SubResource("BoxShape3D_fc0e3")
 mesh = SubResource("BoxMesh_7jktm")
 
 [node name="RMBWalkingC" parent="Cube" unique_id=2012342244 instance=ExtResource("4_7jktm")]
+walk_speed = 1.0
 
 [node name="GravityC" parent="Cube" unique_id=397637246 instance=ExtResource("4_ryrav")]
 

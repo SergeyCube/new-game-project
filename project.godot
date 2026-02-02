@@ -41,7 +41,6 @@ enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 
 [global_group]
 
-having_focus=""
 rmb_walking_c=""
 move_and_slide_c=""
 gravity_c=""
