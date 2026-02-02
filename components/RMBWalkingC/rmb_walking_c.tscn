@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cl07o106gccc8"]
-
-[ext_resource type="Script" uid="uid://botrgh63em3or" path="res://components/RMBWalkingC/rmb_walking_c.gd" id="1_5wr83"]
-
-[node name="RMBWalkingC" type="Node3D" unique_id=2012342244]
-script = ExtResource("1_5wr83")

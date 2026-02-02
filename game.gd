@@ -23,12 +23,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	# Walking with RMB. First, bc initiializes parent's x and z velocity
-	get_tree().call_group("rmb_walking_c", "update_parent_velocity", delta)
+	get_tree().call_group("walking", "update_parent_velocity", delta)
 	# Gravity
-	get_tree().call_group("gravity_c", "update_parent_gravity", delta)
+	get_tree().call_group("gravity", "update_parent_gravity", delta)
 	# Move_and_slide parent. Must be called after all manipulations with Character3d's velocity
-	get_tree().call_group("move_and_slide_c", "move_and_slide_parent", delta)
-	
+	get_tree().call_group("move_and_slide", "move_and_slide_parent")	
 
 func _on_level_platform_input_event(_camera: Node, event: InputEvent, event_position: Vector3, 
 normal: Vector3, _shape_idx: int) -> void:
@@ -36,10 +35,10 @@ normal: Vector3, _shape_idx: int) -> void:
 	if event.button_index != MOUSE_BUTTON_RIGHT: return
 	if event.pressed != true: return
 	if normal != Vector3(0.0, 1.0, 0.0): return
-	for node in get_tree().get_nodes_in_group("rmb_walking_c"):
+	for node in get_tree().get_nodes_in_group("walking"):
 		node.destination = Vector3(event_position.x, 0, event_position.z)
 
-
+#region Multiplayer
 
 func _on_GDSync_connected() -> void:
 	print(GDSync.get_client_id(), " Connected to GD-Sync")
@@ -118,3 +117,5 @@ func _on_GDSync_client_left(client_id: int) -> void:
 	print(client_id, " Left lobby")
 	var character: CharacterBody3D = self.get_node_or_null("Character" + str(client_id))
 	if character != null: character.queue_free()
+
+#endregion

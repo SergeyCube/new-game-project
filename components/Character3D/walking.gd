@@ -1,14 +1,13 @@
-class_name RMBWalkingC
+class_name Walking
 extends Node3D
 
 @export var walk_speed := 2.0
 
-@onready var destination := Vector3(
-	self.global_position.x, 0.0, self.global_position.z)
+@onready var destination := Vector3(self.global_position.x, 0.0, self.global_position.z)
 @onready var _parent: CharacterBody3D = self.get_parent()
 
 func _ready() -> void:
-	self.add_to_group("rmb_walking_c")
+	self.add_to_group("walking")
 
 func update_parent_velocity(delta: float) -> void:
 	if not _parent.is_on_floor(): return

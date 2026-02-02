@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://d3i1s0eatkbgn" path="res://character/character.gd" id="1_rkbax"]
-[ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/RMBWalkingC/rmb_walking_c.tscn" id="2_ugqs2"]
-[ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/GravityC/gravity_c.tscn" id="3_0rvpn"]
-[ext_resource type="PackedScene" uid="uid://c8swlifmrfxdv" path="res://components/MoveAndSlideC/move_and_slide_c.tscn" id="3_hx151"]
+[ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/Character3D/walking.tscn" id="2_ugqs2"]
+[ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/Character3D/gravity.tscn" id="3_0rvpn"]
+[ext_resource type="PackedScene" uid="uid://sedsjfp0dxue" path="res://components/Character3D/move_and_slide.tscn" id="4_hx151"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hx151"]
 
@@ -28,8 +28,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 20, 20)
 projection = 1
 size = 20.0
 
-[node name="RMBWalkingC" parent="." unique_id=1390097823 instance=ExtResource("2_ugqs2")]
+[node name="Walking" parent="." unique_id=2012342244 instance=ExtResource("2_ugqs2")]
 
-[node name="GravityC" parent="." unique_id=397637246 instance=ExtResource("3_0rvpn")]
+[node name="Gravity" parent="." unique_id=397637246 instance=ExtResource("3_0rvpn")]
 
-[node name="MoveAndSlideC" parent="." unique_id=768861525 instance=ExtResource("3_hx151")]
+[node name="MoveAndSlide" parent="." unique_id=725153590 instance=ExtResource("4_hx151")]

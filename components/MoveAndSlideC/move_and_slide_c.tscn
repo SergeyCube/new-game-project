@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://c8swlifmrfxdv"]
-
-[ext_resource type="Script" uid="uid://b70xckjpw6c8g" path="res://components/MoveAndSlideC/move_and_slide_c.gd" id="1_s6xtq"]
-
-[node name="MoveAndSlideC" type="Node" unique_id=969667181]
-script = ExtResource("1_s6xtq")
