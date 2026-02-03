@@ -1,6 +1,7 @@
 extends Node3D
 
-#const CHARACTER = preload("uid://ckudr8chj1kgo") # character.tscn
+#const Character = preload("uid://d3i1s0eatkbgn") # character.gd
+
 @export var lobby_number: int = 1
 
 func _ready() -> void:
@@ -47,7 +48,7 @@ func _on_GDSync_connected() -> void:
 	#print(GDSync.get_client_id(), " Username ", GDSync.player_get_username(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Player data ", GDSync.player_get_all_data(GDSync.get_client_id()))
 	$Label.text = "ClientID " + str(GDSync.get_client_id())
-	GDSync.lobby_create("Lobby1" + str(self.lobby_number), "", true, 2)
+	GDSync.lobby_create("Lobby" + str(self.lobby_number), "", true, 2)
 
 func _on_GDSync_connection_failed(error: int) -> void:
 	match(error):
@@ -88,8 +89,10 @@ func _on_GDSync_lobby_joined(lobby_name: String) -> void:
 	character.velocity = Vector3(0.0, 0.0, 0.0)
 	character.name = "Character" + str(GDSync.get_client_id())
 	character.get_node("Label3D").text = str(GDSync.get_client_id())
+	#GDSync.sync_var(character.get_node("Label3D"), "text")
 	GDSync.set_gdsync_owner(character, GDSync.get_client_id())
 	character.get_node("Camera3D").current = true
+	
 
 func _on_GDSync_lobby_join_failed(lobby_name: String, error: int) -> void:
 	push_error("Failed to join lobby ", lobby_name, " with error ", str(error))
@@ -134,11 +137,13 @@ func _on_character_instantiator_node_instantiated(node: Node) -> void:
 	#print(GDSync.get_client_id(), "    ", self.get_children())
 	if GDSync.is_gdsync_owner(node): return
 	if not node.name.begins_with("Character"): return
-	#if not node is Character: return
+	#if !(node is Character): return
 	#print(GDSync.get_client_id(), "    ", node.name)
 	node.get_node("Walking").remove_from_group("walking")
 	node.get_node("Gravity").remove_from_group("gravity")
 	node.get_node("MoveAndSlide").remove_from_group("move_and_slide")
 	node.get_node("Camera3D").current = false
+	#print(GDSync.get_gdsync_owner(node), " is owner of ", node)
+	#GDSync.sync_var(node.get_node("Label3D"), "text")
 
 #endregion

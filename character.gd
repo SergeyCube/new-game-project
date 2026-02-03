@@ -3,3 +3,4 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	$Camera3D.look_at(self.global_transform.origin)
+	print("global basis ", self.global_basis)

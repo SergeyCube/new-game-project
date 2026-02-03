@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/Character3D/walking.tscn" id="2_ugqs2"]
 [ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/Character3D/gravity.tscn" id="3_0rvpn"]
 [ext_resource type="PackedScene" uid="uid://sedsjfp0dxue" path="res://components/Character3D/move_and_slide.tscn" id="4_hx151"]
+[ext_resource type="Script" uid="uid://cie1hlv7qd0jd" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_px5sl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hx151"]
 
@@ -43,3 +44,28 @@ modulate = Color(0, 0, 0, 1)
 font = SubResource("SystemFont_wfnr8")
 font_size = 128
 outline_size = 0
+
+[node name="PropertySynchronizer" type="Node" parent="Label3D" unique_id=788516725]
+script = ExtResource("5_px5sl")
+broadcast = 2
+refresh_rate = 1
+node_path = NodePath("..")
+properties = PackedStringArray("text")
+interpolated = false
+interpolation_speed = 1.0
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://cie1hlv7qd0jd"
+
+[node name="PropertySynchronizer" type="Node" parent="." unique_id=630783265]
+script = ExtResource("5_px5sl")
+broadcast = 2
+process = 1
+node_path = NodePath("..")
+properties = PackedStringArray("global_position", "global_basis ", "velocity")
+interpolated = true
+interpolation_speed = 30.0
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://cie1hlv7qd0jd"

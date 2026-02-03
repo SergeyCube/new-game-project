@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://elst0xn32iil"]
 
 [ext_resource type="Script" uid="uid://cj0hhuca60w2v" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/Character3D/walking.tscn" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://sedsjfp0dxue" path="res://components/Character3D/move_and_slide.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/Character3D/gravity.tscn" id="4_ryrav"]
 [ext_resource type="Script" uid="uid://p5p0kqifugfw" path="res://addons/GD-Sync/Scripts/Types/NodeInstantiator.gd" id="5_ryrav"]
@@ -46,7 +45,7 @@ font_weight = 100
 
 [node name="Game" type="Node3D" unique_id=22468147]
 script = ExtResource("1_e2o6t")
-lobby_number = 4
+lobby_number = 14
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=239618745]
 transform = Transform3D(0.3826834, 0.6532814, -0.6532814, 0, 0.7071067, 0.7071067, 0.92387944, -0.27059802, 0.27059802, 0, 10, 0)
@@ -74,12 +73,6 @@ shape = SubResource("BoxShape3D_fc0e3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1793786054]
 mesh = SubResource("BoxMesh_7jktm")
 
-[node name="Gravity" parent="Cube" unique_id=397637246 instance=ExtResource("4_ryrav")]
-
-[node name="MoveAndSlide" parent="Cube" unique_id=725153590 instance=ExtResource("4_fc0e3")]
-
-[node name="Walking" parent="Cube" unique_id=2012342244 instance=ExtResource("4_7jktm")]
-
 [node name="Label3D" type="Label3D" parent="Cube" unique_id=1715608323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 1
@@ -88,6 +81,10 @@ text = "Cube"
 font = SubResource("SystemFont_ryrav")
 font_size = 128
 outline_size = 0
+
+[node name="Gravity" parent="Cube" unique_id=397637246 instance=ExtResource("4_ryrav")]
+
+[node name="MoveAndSlide" parent="Cube" unique_id=725153590 instance=ExtResource("4_fc0e3")]
 
 [node name="CharacterInstantiator" type="Node" parent="." unique_id=1936343911]
 script = ExtResource("5_ryrav")
