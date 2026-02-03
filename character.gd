@@ -1,4 +1,4 @@
-#class_name Character
+class_name Character
 extends CharacterBody3D
 
 func _ready() -> void:

@@ -1,6 +1,7 @@
 extends Node3D
 
-const CHARACTER = preload("uid://ckudr8chj1kgo") # character.tscn
+#const CHARACTER = preload("uid://ckudr8chj1kgo") # character.tscn
+@export var lobby_number: int = 1
 
 func _ready() -> void:
 	GDSync.connected.connect(_on_GDSync_connected)
@@ -17,7 +18,7 @@ func _ready() -> void:
 	GDSync.client_joined.connect(_on_GDSync_client_joined)
 	GDSync.client_left.connect(_on_GDSync_client_left)
 	
-	await get_tree().create_timer(10).timeout
+	#await get_tree().create_timer(10).timeout
 	GDSync.start_multiplayer()
 
 func _physics_process(delta: float) -> void:
@@ -45,7 +46,8 @@ func _on_GDSync_connected() -> void:
 	GDSync.player_set_username("Player" + str(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Username ", GDSync.player_get_username(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Player data ", GDSync.player_get_all_data(GDSync.get_client_id()))
-	GDSync.lobby_create("Lobby1", "", true, 2)
+	$Label.text = "ClientID " + str(GDSync.get_client_id())
+	GDSync.lobby_create("Lobby1" + str(self.lobby_number), "", true, 2)
 
 func _on_GDSync_connection_failed(error: int) -> void:
 	match(error):
@@ -87,6 +89,7 @@ func _on_GDSync_lobby_joined(lobby_name: String) -> void:
 	character.name = "Character" + str(GDSync.get_client_id())
 	character.get_node("Label3D").text = str(GDSync.get_client_id())
 	GDSync.set_gdsync_owner(character, GDSync.get_client_id())
+	character.get_node("Camera3D").current = true
 
 func _on_GDSync_lobby_join_failed(lobby_name: String, error: int) -> void:
 	push_error("Failed to join lobby ", lobby_name, " with error ", str(error))
@@ -136,5 +139,6 @@ func _on_character_instantiator_node_instantiated(node: Node) -> void:
 	node.get_node("Walking").remove_from_group("walking")
 	node.get_node("Gravity").remove_from_group("gravity")
 	node.get_node("MoveAndSlide").remove_from_group("move_and_slide")
+	node.get_node("Camera3D").current = false
 
 #endregion

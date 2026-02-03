@@ -46,6 +46,7 @@ font_weight = 100
 
 [node name="Game" type="Node3D" unique_id=22468147]
 script = ExtResource("1_e2o6t")
+lobby_number = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=239618745]
 transform = Transform3D(0.3826834, 0.6532814, -0.6532814, 0, 0.7071067, 0.7071067, 0.92387944, -0.27059802, 0.27059802, 0, 10, 0)
@@ -96,6 +97,10 @@ replicate_on_join = true
 sync_starting_changes = true
 excluded_properties = PackedStringArray()
 metadata/_custom_type_script = "uid://p5p0kqifugfw"
+
+[node name="Label" type="Label" parent="." unique_id=1609382072]
+offset_right = 304.0
+offset_bottom = 65.0
 
 [connection signal="input_event" from="LevelPlatform" to="." method="_on_level_platform_input_event"]
 [connection signal="node_instantiated" from="CharacterInstantiator" to="." method="_on_character_instantiator_node_instantiated"]
