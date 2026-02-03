@@ -46,6 +46,7 @@ func _on_GDSync_connected() -> void:
 	#print(GDSync.get_client_id(), " Username ", GDSync.player_get_username(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Player data ", GDSync.player_get_all_data(GDSync.get_client_id()))
 	GDSync.lobby_create("Lobby1", "", true, 2)
+
 func _on_GDSync_connection_failed(error: int) -> void:
 	match(error):
 		ENUMS.CONNECTION_FAILED.INVALID_PUBLIC_KEY:
@@ -56,6 +57,7 @@ func _on_GDSync_connection_failed(error: int) -> void:
 func _on_GDSync_lobby_created(lobby_name: String) -> void:
 	print(GDSync.get_client_id(), " Lobby was created " + lobby_name)
 	GDSync.lobby_join(lobby_name)
+
 func _on_GDSync_lobby_creation_failed(lobby_name: String, error: int) -> void:
 	match(error):
 		ENUMS.LOBBY_CREATION_ERROR.LOBBY_ALREADY_EXISTS:
@@ -77,11 +79,15 @@ func _on_GDSync_lobby_creation_failed(lobby_name: String, error: int) -> void:
 func _on_GDSync_lobby_joined(lobby_name: String) -> void:
 	print(GDSync.get_client_id(), " Joined lobby ", lobby_name)
 	
-	var character: CharacterBody3D = GDSync.multiplayer_instantiate(CHARACTER, self)
+	var character: CharacterBody3D = $CharacterInstantiator.instantiate_node()
+		#GDSync.multiplayer_instantiate(CHARACTER, self)
 	#self.add_child(character)
 	character.global_position = Vector3(0.0, 10.8, 0.0)
+	character.velocity = Vector3(0.0, 0.0, 0.0)
 	character.name = "Character" + str(GDSync.get_client_id())
+	character.get_node("Label3D").text = str(GDSync.get_client_id())
 	GDSync.set_gdsync_owner(character, GDSync.get_client_id())
+
 func _on_GDSync_lobby_join_failed(lobby_name: String, error: int) -> void:
 	push_error("Failed to join lobby ", lobby_name, " with error ", str(error))
 	#match(error):
@@ -96,7 +102,8 @@ func _on_GDSync_lobby_join_failed(lobby_name: String, error: int) -> void:
 func _on_GDSync_client_id_changed(own_id: int) -> void:
 	GDSync.player_set_data("ID", own_id)
 	print(GDSync.get_client_id(), " ClientID was changed ")
-	GDSync.player_set_username("User" + str(own_id))
+	GDSync.player_set_username("Player" + str(own_id))
+
 func _on_GDSync_host_changed(is_host: bool, _new_host_id: int) -> void:
 	if is_host: print(GDSync.get_client_id(), " Host true")
 	else: print(GDSync.get_client_id(), " Host false")
@@ -111,11 +118,23 @@ func _on_GDSync_client_joined(client_id: int) -> void:
 	#var character: CharacterBody3D = GDSync.multiplayer_instantiate(CHARACTER, self)
 	##self.add_child(character)
 	#character.global_position = Vector3(0.0, 10.8, 0.0)
+	#character.velocity = Vector3(0.0, 0.0, 0.0)
 	#character.name = "Character" + str(client_id)
 	#GDSync.set_gdsync_owner(character, client_id)
+	#character.get_node("Label3D").text = str(GDSync.get_client_id())
 func _on_GDSync_client_left(client_id: int) -> void:
 	print(client_id, " Left lobby")
 	var character: CharacterBody3D = self.get_node_or_null("Character" + str(client_id))
 	if character != null: character.queue_free()
+
+func _on_character_instantiator_node_instantiated(node: Node) -> void:
+	#print(GDSync.get_client_id(), "    ", self.get_children())
+	if GDSync.is_gdsync_owner(node): return
+	if not node.name.begins_with("Character"): return
+	#if not node is Character: return
+	#print(GDSync.get_client_id(), "    ", node.name)
+	node.get_node("Walking").remove_from_group("walking")
+	node.get_node("Gravity").remove_from_group("gravity")
+	node.get_node("MoveAndSlide").remove_from_group("move_and_slide")
 
 #endregion
