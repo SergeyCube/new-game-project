@@ -15,6 +15,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_oul6g")
 
 [sub_resource type="SystemFont" id="SystemFont_wfnr8"]
+subpixel_positioning = 0
 
 [node name="Character" type="CharacterBody3D" unique_id=1968034015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -50,6 +51,7 @@ script = ExtResource("5_px5sl")
 broadcast = 2
 refresh_rate = 1
 node_path = NodePath("..")
+reliable = true
 properties = PackedStringArray("text")
 interpolated = false
 interpolation_speed = 1.0
@@ -63,7 +65,7 @@ script = ExtResource("5_px5sl")
 broadcast = 2
 process = 1
 node_path = NodePath("..")
-properties = PackedStringArray("global_position", "global_basis ", "velocity")
+properties = PackedStringArray("global_position", "global_basis", "velocity")
 interpolated = true
 interpolation_speed = 30.0
 extrapolated = false
