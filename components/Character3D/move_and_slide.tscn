@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://sedsjfp0dxue"]
-
-[ext_resource type="Script" uid="uid://ddafhehugv6vq" path="res://components/Character3D/move_and_slide.gd" id="1_2ldv2"]
-
-[node name="MoveAndSlide" type="Node" unique_id=725153590]
-script = ExtResource("1_2ldv2")

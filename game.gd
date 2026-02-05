@@ -4,6 +4,8 @@ extends Node3D
 
 @export var lobby_number: int = 1
 
+var enemy_client_id: int = -1
+
 func _ready() -> void:
 	GDSync.connected.connect(_on_GDSync_connected)
 	GDSync.connection_failed.connect(_on_GDSync_connection_failed)
@@ -23,6 +25,11 @@ func _ready() -> void:
 	GDSync.start_multiplayer()
 
 func _physics_process(delta: float) -> void:
+	if self.enemy_client_id != -1:
+		var perceived_ping: float = await GDSync.get_client_percieved_ping(self.enemy_client_id)
+		print(GDSync.get_client_id(), " Perceived ping to ", self.enemy_client_id, 
+			": ",  snapped(perceived_ping*1000, 1))
+
 	
 	# Walking with RMB. First, bc initiializes parent's x and z velocity
 	get_tree().call_group("walking", "update_parent_velocity", delta)
@@ -47,7 +54,7 @@ func _on_GDSync_connected() -> void:
 	GDSync.player_set_username("Player" + str(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Username ", GDSync.player_get_username(GDSync.get_client_id()))
 	#print(GDSync.get_client_id(), " Player data ", GDSync.player_get_all_data(GDSync.get_client_id()))
-	$Label.text = "ClientID " + str(GDSync.get_client_id())
+	$ClientIDLabel.text = "ClientID " + str(GDSync.get_client_id())
 	GDSync.lobby_create("Lobby" + str(self.lobby_number), "", true, 2)
 
 func _on_GDSync_connection_failed(error: int) -> void:
@@ -83,27 +90,15 @@ func _on_GDSync_lobby_joined(lobby_name: String) -> void:
 	print(GDSync.get_client_id(), " Joined lobby ", lobby_name)
 	
 	var character: CharacterBody3D = $CharacterInstantiator.instantiate_node()
-		#GDSync.multiplayer_instantiate(CHARACTER, self)
-	#self.add_child(character)
 	character.global_position = Vector3(0.0, 10.8, 0.0)
 	character.velocity = Vector3(0.0, 0.0, 0.0)
 	character.name = "Character" + str(GDSync.get_client_id())
 	character.get_node("Label3D").text = str(GDSync.get_client_id())
-	#GDSync.sync_var(character.get_node("Label3D"), "text")
 	GDSync.set_gdsync_owner(character, GDSync.get_client_id())
 	character.get_node("Camera3D").current = true
-	
 
 func _on_GDSync_lobby_join_failed(lobby_name: String, error: int) -> void:
 	push_error("Failed to join lobby ", lobby_name, " with error ", str(error))
-	#match(error):
-		#ENUMS.LOBBY_JOIN_ERROR.LOBBY_DOES_NOT_EXIST:
-			#GDSync.lobby_create("Lobby1", "", true, 2)
-		#ENUMS.LOBBY_JOIN_ERROR.LOBBY_IS_FULL:
-			#await get_tree().create_timer(1).timeout
-			#GDSync.lobby_join(lobby_name)
-		#_:
-			#push_error("Failed to join lobby ", lobby_name, " with error ", str(error))
 	
 func _on_GDSync_client_id_changed(own_id: int) -> void:
 	GDSync.player_set_data("ID", own_id)
@@ -117,17 +112,11 @@ func _on_GDSync_host_changed(is_host: bool, _new_host_id: int) -> void:
 func _on_GDSync_client_joined(client_id: int) -> void:
 	if client_id != GDSync.get_client_id():
 		var ping: float = await GDSync.get_client_ping(client_id)
-		print(GDSync.get_client_id(), " Raw ping to ", client_id, ": ", ping * 60.0)
+		print(GDSync.get_client_id(), " Raw ping to ", client_id, ": ",  snapped(ping*1000, 1))
 		var perceived_ping: float = await GDSync.get_client_percieved_ping(client_id)
-		print(GDSync.get_client_id(), " Perceived ping to ", client_id, ": ", perceived_ping * 60.0)
-		
-	#var character: CharacterBody3D = GDSync.multiplayer_instantiate(CHARACTER, self)
-	##self.add_child(character)
-	#character.global_position = Vector3(0.0, 10.8, 0.0)
-	#character.velocity = Vector3(0.0, 0.0, 0.0)
-	#character.name = "Character" + str(client_id)
-	#GDSync.set_gdsync_owner(character, client_id)
-	#character.get_node("Label3D").text = str(GDSync.get_client_id())
+		print(GDSync.get_client_id(), " Perceived ping to ", client_id, ": ",  snapped(perceived_ping*1000, 1))
+		self.enemy_client_id = client_id
+
 func _on_GDSync_client_left(client_id: int) -> void:
 	print(client_id, " Left lobby")
 	var character: CharacterBody3D = self.get_node_or_null("Character" + str(client_id))

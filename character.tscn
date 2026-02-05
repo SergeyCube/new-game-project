@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://d3i1s0eatkbgn" path="res://character.gd" id="1_rkbax"]
-[ext_resource type="PackedScene" uid="uid://cl07o106gccc8" path="res://components/Character3D/walking.tscn" id="2_ugqs2"]
-[ext_resource type="PackedScene" uid="uid://opsccar23tpu" path="res://components/Character3D/gravity.tscn" id="3_0rvpn"]
-[ext_resource type="PackedScene" uid="uid://sedsjfp0dxue" path="res://components/Character3D/move_and_slide.tscn" id="4_hx151"]
+[ext_resource type="Script" uid="uid://botrgh63em3or" path="res://components/Character3D/walking.gd" id="2_px5sl"]
+[ext_resource type="Script" uid="uid://ddafhehugv6vq" path="res://components/Character3D/move_and_slide.gd" id="4_0qfo5"]
+[ext_resource type="Script" uid="uid://pywyr7axyycx" path="res://components/Character3D/gravity.gd" id="5_0qfo5"]
 [ext_resource type="Script" uid="uid://cie1hlv7qd0jd" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_px5sl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hx151"]
@@ -32,11 +32,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 20, 20)
 projection = 1
 size = 20.0
 
-[node name="Walking" parent="." unique_id=2012342244 instance=ExtResource("2_ugqs2")]
+[node name="Walking" type="Node3D" parent="." unique_id=855329253]
+script = ExtResource("2_px5sl")
+metadata/_custom_type_script = "uid://botrgh63em3or"
 
-[node name="Gravity" parent="." unique_id=397637246 instance=ExtResource("3_0rvpn")]
+[node name="Gravity" type="Node" parent="." unique_id=626861392]
+script = ExtResource("5_0qfo5")
+metadata/_custom_type_script = "uid://pywyr7axyycx"
 
-[node name="MoveAndSlide" parent="." unique_id=725153590 instance=ExtResource("4_hx151")]
+[node name="MoveAndSlide" type="Node" parent="." unique_id=217498076]
+script = ExtResource("4_0qfo5")
+metadata/_custom_type_script = "uid://ddafhehugv6vq"
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1979048999]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -51,7 +57,6 @@ script = ExtResource("5_px5sl")
 broadcast = 2
 refresh_rate = 1
 node_path = NodePath("..")
-reliable = true
 properties = PackedStringArray("text")
 interpolated = false
 interpolation_speed = 1.0

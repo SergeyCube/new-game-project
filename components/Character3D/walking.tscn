@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cl07o106gccc8"]
-
-[ext_resource type="Script" uid="uid://botrgh63em3or" path="res://components/Character3D/walking.gd" id="1_02dt3"]
-
-[node name="Walking" type="Node3D" unique_id=2012342244]
-script = ExtResource("1_02dt3")
