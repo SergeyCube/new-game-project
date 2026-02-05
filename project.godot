@@ -41,13 +41,14 @@ enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 
 [global_group]
 
-having_focus=""
-rmb_walking_c=""
-move_and_slide_c=""
+move_and_slide=""
+gravity=""
+walking=""
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

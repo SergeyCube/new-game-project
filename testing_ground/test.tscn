@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b6vf1aji6dy38"]
+
+[ext_resource type="Script" uid="uid://dkxfwlasuue4e" path="res://testing_ground/test_main.gd" id="1_6uqi0"]
+[ext_resource type="Script" uid="uid://cj6vnhmg3sx1x" path="res://testing_ground/test_char.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://cx5ra8ie2elih" path="res://testing_ground/test_grav.gd" id="2_8uh7m"]
+[ext_resource type="Script" uid="uid://brxcio2nnyxtl" path="res://testing_ground/test_move.gd" id="4_ppyta"]
+
+[node name="Main" type="Node" unique_id=1594117186]
+script = ExtResource("1_6uqi0")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1861824804]
+script = ExtResource("1_37kl0")
+
+[node name="grav_c" type="Node" parent="CharacterBody3D" unique_id=511405685]
+script = ExtResource("2_8uh7m")
+
+[node name="move_c" type="Node" parent="CharacterBody3D" unique_id=1432290147]
+script = ExtResource("4_ppyta")
