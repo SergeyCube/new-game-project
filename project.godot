@@ -8,15 +8,6 @@
 
 config_version=5
 
-[GD-Sync]
-
-version="0.14"
-publicKey="53bea4e849f3b66d"
-privateKey="a05edae34ee8a58d"
-uniqueUsername=true
-useSenderID=true
-protectedMode=false
-
 [application]
 
 config/name="New Game Project"
@@ -24,20 +15,10 @@ run/main_scene="uid://elst0xn32iil"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
-
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/resizable=false
-window/stretch/mode="viewport"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 
 [global_group]
 
@@ -48,7 +29,6 @@ walking=""
 [physics]
 
 3d/physics_engine="Jolt Physics"
-common/physics_interpolation=true
 
 [rendering]
 

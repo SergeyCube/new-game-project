@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://botrgh63em3or" path="res://components/Character3D/walking.gd" id="2_px5sl"]
 [ext_resource type="Script" uid="uid://ddafhehugv6vq" path="res://components/Character3D/move_and_slide.gd" id="4_0qfo5"]
 [ext_resource type="Script" uid="uid://pywyr7axyycx" path="res://components/Character3D/gravity.gd" id="5_0qfo5"]
-[ext_resource type="Script" uid="uid://cie1hlv7qd0jd" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_px5sl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hx151"]
 
@@ -14,8 +13,16 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_4flbx"]
 material = SubResource("StandardMaterial3D_oul6g")
 
-[sub_resource type="SystemFont" id="SystemFont_wfnr8"]
-subpixel_positioning = 0
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wfnr8"]
+properties/0/path = NodePath(".:global_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:global_basis")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D" unique_id=1968034015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -44,35 +51,6 @@ metadata/_custom_type_script = "uid://pywyr7axyycx"
 script = ExtResource("4_0qfo5")
 metadata/_custom_type_script = "uid://ddafhehugv6vq"
 
-[node name="Label3D" type="Label3D" parent="." unique_id=1979048999]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-billboard = 1
-modulate = Color(0, 0, 0, 1)
-font = SubResource("SystemFont_wfnr8")
-font_size = 128
-outline_size = 0
-
-[node name="PropertySynchronizer" type="Node" parent="Label3D" unique_id=788516725]
-script = ExtResource("5_px5sl")
-broadcast = 2
-refresh_rate = 1
-node_path = NodePath("..")
-properties = PackedStringArray("text")
-interpolated = false
-interpolation_speed = 1.0
-extrapolation = null
-extrapolated = false
-max_extrapolation_time = 0.2
-metadata/_custom_type_script = "uid://cie1hlv7qd0jd"
-
-[node name="PropertySynchronizer" type="Node" parent="." unique_id=630783265]
-script = ExtResource("5_px5sl")
-broadcast = 2
-process = 1
-node_path = NodePath("..")
-properties = PackedStringArray("global_position", "global_basis", "velocity")
-interpolated = true
-interpolation_speed = 30.0
-extrapolated = false
-max_extrapolation_time = 0.2
-metadata/_custom_type_script = "uid://cie1hlv7qd0jd"
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1828119206]
+replication_config = SubResource("SceneReplicationConfig_wfnr8")
+visibility_update_mode = 1
