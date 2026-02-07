@@ -89,10 +89,6 @@ metadata/_custom_type_script = "uid://pywyr7axyycx"
 script = ExtResource("4_ryrav")
 metadata/_custom_type_script = "uid://ddafhehugv6vq"
 
-[node name="CharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=173168730]
-_spawnable_scenes = PackedStringArray("uid://ckudr8chj1kgo")
-spawn_path = NodePath("..")
-
 [node name="HostButton" type="Button" parent="." unique_id=1561184548]
 offset_left = 9.0
 offset_top = 644.0
@@ -106,6 +102,10 @@ offset_top = 682.0
 offset_right = 96.0
 offset_bottom = 712.0
 text = "JOIN"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1698178656]
+_spawnable_scenes = PackedStringArray("uid://ckudr8chj1kgo")
+spawn_path = NodePath("..")
 
 [connection signal="input_event" from="LevelPlatform" to="." method="_on_level_platform_input_event"]
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]

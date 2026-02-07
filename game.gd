@@ -21,7 +21,8 @@ normal: Vector3, _shape_idx: int) -> void:
 	if event.pressed != true: return
 	if normal != Vector3(0.0, 1.0, 0.0): return
 	for node in get_tree().get_nodes_in_group("walking"):
-		node.destination = Vector3(event_position.x, 0, event_position.z)
+		if node.is_multiplayer_authority() == true:
+			node.destination = Vector3(event_position.x, 0, event_position.z)
 
 #region ENet_multiplayer
 
@@ -34,16 +35,19 @@ func _on_host_button_pressed() -> void:
 	self.multiplayer.peer_connected.connect(_on_multiplayer_peer_connected)
 	_on_multiplayer_peer_connected(1) # for host itself
 	
-func _on_multiplayer_peer_connected(id: int = 1) -> void:
+func _on_join_button_pressed() -> void:
+	var peer := ENetMultiplayerPeer.new()
+	var error = peer.create_client("127.0.0.1", PORT)
+	self.multiplayer.multiplayer_peer = peer
+	if error == OK: print(self.multiplayer.get_unique_id(), " Client was created")
+	else: print(error)
+	
+func _on_multiplayer_peer_connected(id: int) -> void:
 	print(id, " connected")
-	var character : Character = CHARACTER.instantiate()
+	var character = CHARACTER.instantiate()
 	character.name = str(id)
 	call_deferred("add_child", character)
 
-func _on_join_button_pressed() -> void:
-	var peer := ENetMultiplayerPeer.new()
-	peer.create_client("127.0.0.1", PORT)
-	self.multiplayer.multiplayer_peer = peer
 
 #endregion
 
